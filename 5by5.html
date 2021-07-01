@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Puzzle-Game(5*5)</title>
+   <script src="./js/app5.js"></script>
+   <link rel="stylesheet" href="./css/style5.css">
+</head>
+
+<body
+   style="background-image: url(https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm27-ning-57b-marble-l.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=5b8cabff7b723c505e37b696656d379e); background-size: cover;">
+
+   <div class="whole flex">
+
+      <div class="notwhole container">
+         <center>
+            <div class="flex flex_horizontal leftbutton" style="display: block; margin-bottom: 5%;">
+               <a href="./index.html"><button class="big-button">3*3</button></a>
+               <a href="./4by4.html"><button class="big-button">4*4</button></a>
+               <a href="./5by5.html"><button class="big-button">5*5</button></a>
+            </div>
+         </center>
+         <div class="flex  flex_vertical grid">
+            <center>
+               <div id="table" style="display: table;">
+                  <div id="row1" style="display: table-row;">
+                     <div id="cell11" class="tile1" onClick="clickTile(1,1);"></div>
+                     <div id="cell12" class="tile2" onClick="clickTile(1,2);"></div>
+                     <div id="cell13" class="tile3" onClick="clickTile(1,3);"></div>
+                     <div id="cell14" class="tile4" onClick="clickTile(1,4);"></div>
+                     <div id="cell15" class="tile5" onClick="clickTile(1,5);"></div>
+                  </div>
+                  <div id="row2" style="display: table-row;">
+                     <div id="cell21" class="tile6" onClick="clickTile(2,1);"></div>
+                     <div id="cell22" class="tile7" onClick="clickTile(2,2);"></div>
+                     <div id="cell23" class="tile8" onClick="clickTile(2,3);"></div>
+                     <div id="cell24" class="tile9" onClick="clickTile(2,4);"></div>
+                     <div id="cell25" class="tile10" onClick="clickTile(2,5);"></div>
+                  </div>
+                  <div id="row3" style="display: table-row;">
+                     <div id="cell31" class="tile11" onClick="clickTile(3,1);"></div>
+                     <div id="cell32" class="tile12" onClick="clickTile(3,2);"></div>
+                     <div id="cell33" class="tile13" onClick="clickTile(3,3);"></div>
+                     <div id="cell34" class="tile14" onClick="clickTile(3,4);"></div>
+                     <div id="cell35" class="tile15" onClick="clickTile(3,5);"></div>
+                  </div>
+                  <div id="row4" style="display: table-row;">
+                     <div id="cell41" class="tile16" onClick="clickTile(4,1);"></div>
+                     <div id="cell42" class="tile17" onClick="clickTile(4,2);"></div>
+                     <div id="cell43" class="tile18" onClick="clickTile(4,3);"></div>
+                     <div id="cell44" class="tile19" onClick="clickTile(4,4);"></div>
+                     <div id="cell45" class="tile20" onClick="clickTile(4,5);"></div>
+                  </div>
+                  <div id="row5" style="display: table-row;">
+                     <div id="cell51" class="tile21" onClick="clickTile(5,1);"></div>
+                     <div id="cell52" class="tile22" onClick="clickTile(5,2);"></div>
+                     <div id="cell53" class="tile23" onClick="clickTile(5,3);"></div>
+                     <div id="cell54" class="tile24" onClick="clickTile(5,4);"></div>
+                     <div id="cell55" class="tile25" onClick="clickTile(5,5);"></div>
+                  </div>
+               </div>
+            </center>
+            <center>
+               <h3> Time</h3>
+               <div id="result"></div>
+            </center>
+
+            <script>
+               var time = 0;
+               function timer() {
+                  time = time + 1;
+                  document.getElementById("result").innerHTML = time;
+               }
+               setInterval(function () {
+                  timer();
+               }, 1000);
+
+
+
+               // Store
+               localStorage.setItem("Time_taken", time);
+               // Retrieve
+               function highscore() {
+                  document.getElementById("time").innerHTML = localStorage.getItem("Time_taken");
+               }
+            </script>
+
+         </div>
+
+         <center>
+            <div class="flex  flex_horizontal rightbutton">
+
+               <button onClick="shuffle();" class="big-button">New Game</button>
+
+               <button class="big-button" onclick="playAudio()"><audio id="myAudio" autoplay loop>
+                     <source src="./Game-Menu.mp3">
+                  </audio>Music On</button>
+
+               <button class="big-button" onclick="pauseAudio()"><audio id="myAudio" autoplay loop>
+                     <source src="./Game-Menu.mp3">
+                  </audio>Music Off</button>
+
+               <button class="big-button" onclick="highscore();">High Score</button>
+
+               <div id="time"></div>
+            </div>
+         </center>
+      </div>
+
+
+      <div class="container">
+         <img src="https://i.pinimg.com/564x/8d/1e/b7/8d1eb763e8a527f801124bb6ecf77b06.jpg">
+         <img src="https://i.pinimg.com/236x/2d/b6/7f/2db67ff679f177dde48b0879384f0a38.jpg">
+         <img src="https://i.pinimg.com/236x/25/6e/13/256e1326984ba33013df8b32d6e7273c.jpg">
+         <img src="https://i.pinimg.com/236x/42/2a/4c/422a4c3560c8b4c175978020b51c33bd.jpg">
+      </div>
+      <script>
+         var x = document.getElementById("myAudio");
+
+         function playAudio() {
+            x.play();
+         }
+
+         function pauseAudio() {
+            x.pause();
+         }
+      </script>
+
+   </div>
+</body>
+
+</html>
+<!-- https://github.com/pradeepkumar00/Chat-application-using-jquery-and-php-with-image-sharing/blob/master/index.php -->
