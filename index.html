@@ -10,6 +10,8 @@
    <link rel="stylesheet" href="./css/style3.css">
 </head>
 
+
+
 <body
    style="background-image: url(https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm27-ning-57b-marble-l.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=5b8cabff7b723c505e37b696656d379e); background-size: cover;">
 
@@ -25,6 +27,54 @@
          </center>
 
          <div class="flex  flex_vertical grid">
+            <center>
+               <h3> Time</h3>
+               <div id="result1"></div>
+
+               <h3> Moves</h3>
+               <div id="result2"></div>
+            </center>
+            <script>
+               
+            function clickTile(row, column) {
+               let count=0;
+            count = count + 1;
+              var cell = document.getElementById("cell" + row + column);
+              var tile = cell.className;
+              if (tile != "tile9") {
+                //Checking if white tile on the right
+                if (column < 3) {
+                  if (document.getElementById("cell" + row + (column + 1)).className == "tile9") {
+                    swapTiles("cell" + row + column, "cell" + row + (column + 1));
+                    return;
+                  }
+                }
+                //Checking if white tile on the left
+                if (column > 1) {
+                  if (document.getElementById("cell" + row + (column - 1)).className == "tile9") {
+                    swapTiles("cell" + row + column, "cell" + row + (column - 1));
+                    return;
+                  }
+                }
+                //Checking if white tile is above
+                if (row > 1) {
+                  if (document.getElementById("cell" + (row - 1) + column).className == "tile9") {
+                    swapTiles("cell" + row + column, "cell" + (row - 1) + column);
+                    return;
+                  }
+                }
+                //Checking if white tile is below
+                if (row < 3) {
+                  if (document.getElementById("cell" + (row + 1) + column).className == "tile9") {
+                    swapTiles("cell" + row + column, "cell" + (row + 1) + column);
+                    return;
+                  }
+                }
+               }
+            }
+            document.getElementById("result2").innerHTML = count;
+            </script>
+
             <center>
                <div id="table" style="display: table;">
                   <div id="row1" style="display: table-row;">
@@ -44,16 +94,13 @@
                   </div>
                </div>
             </center>
-            <center>
-               <h3> Time</h3>
-               <div id="result"></div>
-            </center>
+            
 
             <script>
                var time = 0;
                function timer() {
                   time = time + 1;
-                  document.getElementById("result").innerHTML = time;
+                  document.getElementById("result1").innerHTML = time;
                }
                setInterval(function () {
                   timer();
@@ -64,7 +111,9 @@
                // Retrieve
                function highscore() {
                   document.getElementById("time").innerHTML = localStorage.getItem("Time_taken");
+
                }
+               
             </script>
 
          </div>
@@ -91,8 +140,8 @@
 
 
       <div class="container">
-         <img src="https://i.pinimg.com/564x/8d/1e/b7/8d1eb763e8a527f801124bb6ecf77b06.jpg">
-         <img src="https://i.pinimg.com/236x/2d/b6/7f/2db67ff679f177dde48b0879384f0a38.jpg">
+         <img src="https://i.pinimg.com/564x/8d/1e/b7/8d1eb763e8a527f801124bb6ecf77b06.jpg" onclick="image()">
+         <img src="https://i.pinimg.com/236x/2d/b6/7f/2db67ff679f177dde48b0879384f0a38.jpg" onclick="image()"> 
          <img src="https://i.pinimg.com/236x/25/6e/13/256e1326984ba33013df8b32d6e7273c.jpg">
          <img src="https://i.pinimg.com/236x/42/2a/4c/422a4c3560c8b4c175978020b51c33bd.jpg">
       </div>
@@ -107,6 +156,12 @@
 
          function pauseAudio() {
             x.pause();
+         }
+
+         function image(){
+         //  document.querySelectorAll("#cell11, #cell12, #cell13, #cell21, #cell22, #cell23, #cell31, #cell32, #cell33").style.background = "url('https://i.pinimg.com/564x/8d/1e/b7/8d1eb763e8a527f801124bb6ecf77b06.jpg')";
+
+
          }
       </script>
 
